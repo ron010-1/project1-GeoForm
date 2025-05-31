@@ -24,16 +24,16 @@ export class Report {
   @Column({ default: 'pending' })
   status: 'pending' | 'in_progress' | 'resolved';
 
-  @Column()
+  @Column('double precision')
   latitude: number;
 
-  @Column()
+  @Column('double precision')
   longitude: number;
 
-  @Column({ nullable: true })
-  imageUrl?: [string];
+  @Column('text', { array: true, nullable: true})
+  imageUrl?: string[] | null;
 
-  @Column()
+  @Column({ default: 0 })
   suportCount: number;
 
   @CreateDateColumn()

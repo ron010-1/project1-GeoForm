@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './dto/create-report.dto';
 
@@ -7,12 +7,18 @@ export class ReportsController {
   constructor(private readonly appService: ReportsService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+  async findAllPaginated(
+    @Query('page') page = 1,
+    @Query('limit') limit = 10,
+  ) {
+    return this.appService.findAllPaginated(
+      Number(page),
+      Number(limit),
+    );
+  };
 
   @Post()
   create(@Body() createReportDto: CreateReportDto){
-    return this.appService.createReport(createReportDto);
-  }
+    return this.appService.create(createReportDto);
+  };
 }

@@ -1,9 +1,5 @@
 import {
-  IsString,
-  IsNumber,
-  IsOptional,
-  IsArray,
-  IsEnum,
+  IsString
 } from 'class-validator';
 
 export class EditReportDto {

@@ -23,6 +23,11 @@ export class ReportsController {
     return this.appService.getById(id);
   }
 
+  @Get('/supervisor/:id')
+  async getBySupervisorId(@Param("id") id : string){
+    return this.appService.getBySupervisorId(id);
+  }
+
   @Post()
   create(@Body() createReportDto: CreateReportDto){
     return this.appService.create(createReportDto);

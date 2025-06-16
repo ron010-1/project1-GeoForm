@@ -1,4 +1,3 @@
-// support.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
 import { Report } from 'src/reports/entity/report.entity';
 

@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateReportDto } from './dto/create-report.dto';
 import { Report } from './entity/report.entity';
 import { randomUUID } from 'crypto';
+import { EditReportDto } from './dto/edit-report.dto';
 @Injectable()
 export class ReportsService {
   constructor(
@@ -16,10 +17,10 @@ export class ReportsService {
     const data = {
       ...report,
       id: randomUUID(),
-    }
+    };
     return this.reportRepository.save(data);
-  };
-  
+  }
+
   async findAllPaginated(page = 1, limit = 10) {
     const [data, total] = await this.reportRepository.findAndCount({
       skip: (page - 1) * limit,
@@ -35,7 +36,27 @@ export class ReportsService {
       lastPage: Math.ceil(total / limit),
     };
   }
-  
 
-};
+  async getById(id: string) {
+    const data = await this.reportRepository.findOne({
+      where: { id: id },
+    });
 
+    return data;
+  }
+
+  async editById(id: string, editReport: EditReportDto) {
+    const data = await this.reportRepository.findOne({
+      where: { id: id },
+    });
+
+    const edited = {
+      ...data,
+      status: editReport.status,
+    };
+
+    await this.reportRepository.update(id, edited);
+
+    return this.reportRepository.findOne({ where: { id } });
+  }
+}

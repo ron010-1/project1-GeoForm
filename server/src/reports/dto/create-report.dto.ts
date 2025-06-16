@@ -1,4 +1,10 @@
-import { IsString, IsNumber, IsOptional, IsArray, IsEnum } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsOptional,
+  IsArray,
+  IsEnum,
+} from 'class-validator';
 
 export class CreateReportDto {
   @IsString()
@@ -8,7 +14,16 @@ export class CreateReportDto {
   description: string;
 
   @IsString()
+  ip: string;
+
+  @IsString()
   nameUser: string;
+
+  @IsNumber()
+  latitudeUser: number;
+
+  @IsNumber()
+  longitudeUser: number;
 
   @IsNumber()
   latitude: number;

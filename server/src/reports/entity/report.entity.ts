@@ -21,13 +21,22 @@ export class Report {
   @Column()
   nameUser: string;
 
+  @Column({ type: 'varchar', default: '0.0.0.0' })
+  ip: string;
+
+  @Column({type: "double precision", nullable: true})
+  latitudeUser: number;
+
+  @Column({type: "double precision", nullable: true})
+  longitudeUser: number;
+
   @Column({ default: 'pending' })
   status: 'pending' | 'in_progress' | 'resolved';
 
-  @Column('double precision')
+  @Column({type: "double precision", nullable: true})
   latitude: number;
 
-  @Column('double precision')
+  @Column({type: "double precision", nullable: true})
   longitude: number;
 
   @Column('text', { array: true, nullable: true})

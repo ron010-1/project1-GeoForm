@@ -16,7 +16,7 @@ import { Support } from './supports/entity/support.entity';
       password: process.env.PASSWORD_POSTGIS,
       database: process.env.DATABASE_POSTGIS,
       entities: [Report, Support],
-      synchronize: true
+      synchronize: true,
     }),
     ReportsModule
   ],
